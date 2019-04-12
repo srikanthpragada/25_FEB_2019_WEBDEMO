@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  body { font-family : verdana; font-size:10pt}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Countries</title>
+</head>
+<body>
+<h1>{{title}}</h1>
+{% if countries %}
+<table border="1" width="100%" cellpadding="5px">
+    <tr>
+        <th>Name</th>
+        <th>Capital</th>
+        <th>Region</th>
+        <th>Population</th>
+    </tr>
+    {% for c in countries %}
+    <tr>
+        <td> {{ c.name }}</td>
+        <td> {{ c.capital }}</td>
+        <td> {{ c.region }}</td>
+        <td> {{ c.population }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h2>Sorry! Could not get details of countries. Please try again!</h2>
+{% endif %}
+</body>
+</html>
