@@ -16,6 +16,7 @@
         <th>Capital</th>
         <th>Region</th>
         <th>Population</th>
+        <th>Flag</th>
     </tr>
     {% for c in countries %}
     <tr>
@@ -23,6 +24,10 @@
         <td> {{ c.capital }}</td>
         <td> {{ c.region }}</td>
         <td> {{ c.population }}</td>
+        <td> <a href="{{c.flag}}" target="_blank" title="Flag">
+               <img src="{{c.flag}}" width="32" height="32" />
+             </a>
+        </td>
     </tr>
     {% endfor %}
 </table>

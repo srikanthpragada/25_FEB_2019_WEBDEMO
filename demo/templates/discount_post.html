@@ -6,7 +6,8 @@
 </head>
 <body>
 <h1>Discount Calculation</h1>
-<form>
+<form method="post">
+    {% csrf_token %}
     Amount : <input type="number" name="amount" required="required" />
     <p/>
     Discount % : <input type="number" name="disrate"  required />
@@ -17,8 +18,6 @@
 {% if discount %}
   <h3>Discount = {{discount}} </h3>
 {% endif %}
-
-{{message}}
 
 </body>
 </html>

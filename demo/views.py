@@ -34,6 +34,32 @@ def show_countries(request):
 
 def calculate_discount(request):
     if 'amount' in request.GET:
-        print("Amount : ", request.GET['amount'])
+        amount = request.GET['amount']
+        rate = request.GET['disrate']
+        if len(amount.strip()) == 0:
+            message = "Amount is required!"
+            return render(request, 'discount.html', {'message': message})
+        elif len(rate.strip()) == 0:
+            message = "Rate is required!"
+            return render(request, 'discount.html', {'message': message})
 
-    return render(request, 'discount.html')
+        amount = float(amount)
+        rate = float(rate)
+        discount = amount * rate / 100;
+        return render(request, 'discount.html',
+                {'discount' : discount})
+    else:
+        return render(request, 'discount.html')
+
+
+
+def calculate_discount_post(request):
+    if request.method == "GET":
+        return render(request,"discount_post.html")
+    else:  # Post request, so process data
+        amount = float(request.POST['amount'])
+        rate = float(request.POST['disrate'])
+        discount = amount * rate / 100;
+        return render(request, 'discount_post.html',
+                      {'discount': discount})
+

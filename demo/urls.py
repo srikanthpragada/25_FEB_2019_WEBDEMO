@@ -7,4 +7,5 @@ urlpatterns = [
     path('now/', views.shownow ),
     path('countries/', views.show_countries),
     path('discount/', views.calculate_discount),
+    path('discount2/', views.calculate_discount_post),
 ]
