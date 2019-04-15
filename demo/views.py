@@ -3,6 +3,8 @@ from datetime import datetime
 import requests
 from django.shortcuts import render
 
+from .forms import InterestForm
+
 
 # Create your views here.
 
@@ -47,15 +49,14 @@ def calculate_discount(request):
         rate = float(rate)
         discount = amount * rate / 100;
         return render(request, 'discount.html',
-                {'discount' : discount})
+                      {'discount': discount})
     else:
         return render(request, 'discount.html')
 
 
-
 def calculate_discount_post(request):
     if request.method == "GET":
-        return render(request,"discount_post.html")
+        return render(request, "discount_post.html")
     else:  # Post request, so process data
         amount = float(request.POST['amount'])
         rate = float(request.POST['disrate'])
@@ -63,3 +64,18 @@ def calculate_discount_post(request):
         return render(request, 'discount_post.html',
                       {'discount': discount})
 
+
+def calculate_interest(request):
+    if request.method == "GET":
+        f = InterestForm()
+        return render(request, "interest.html", {'form': f})
+    else:  # Post request, so process data
+        f = InterestForm(request.POST)
+        if f.is_valid():
+            amount = float(f.cleaned_data['amount'])
+            rate = float(f.cleaned_data['rate'])
+            interest = amount * rate / 100
+            return render(request, "interest.html",
+                          {'form': f, 'interest': interest})
+        else:
+            return render(request, "interest.html", {'form': f})
