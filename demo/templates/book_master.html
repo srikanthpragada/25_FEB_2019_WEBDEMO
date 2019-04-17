@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <style>
+        body { font-family:verdana;font-size:12pt; }
+        .banner { color:white; background-color:red;
+                  font-family:arial;font-size:24pt;
+                  font-weight:bold;letter-spacing:5pt;}
+        .menu  { background-color:lightgray;
+                  font-family:verdana;font-size:12pt;
+                  font-weight:bold}
+    </style>
+</head>
+<body>
+<div class="banner">Books</div>
+<div class="menu">
+    [<a href="/demo/book/summary">Home</a>]&nbsp;
+    [<a href="/demo/book/list">List Books</a>]&nbsp;
+    [<a href="/demo/book/add">Add Book</a>]&nbsp;
+    [<a href="/demo/book/search">Search Books</a>]&nbsp;
+</div>
+{% block body %}
+{% endblock %}
+</body>
+</html>

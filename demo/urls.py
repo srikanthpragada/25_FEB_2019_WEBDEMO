@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from . import views
+from . import views, book_views
 
 urlpatterns = [
     path('welcome/', views.welcome ),
@@ -9,4 +9,6 @@ urlpatterns = [
     path('discount/', views.calculate_discount),
     path('discount2/', views.calculate_discount_post),
     path('interest/', views.calculate_interest),
+    path('book/summary/', book_views.book_summary),
+    path('book/list/', book_views.book_list),
 ]
