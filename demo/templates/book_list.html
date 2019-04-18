@@ -18,7 +18,8 @@
           <td> {{b.price }} </td>
           <td style="text-align:center">
               <a href="/demo/book/edit/{{b.id}}">Edit</a>
-              <a href="/demo/book/delete/{{b.id}}">Delete</a>
+              <a onclick="return confirm('Do you really want to delete book?')"
+                 href="/demo/book/delete/{{b.id}}">Delete</a>
           </td>
       </tr>
     {% endfor %}

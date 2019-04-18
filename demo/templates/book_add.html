@@ -1,0 +1,16 @@
+{% extends "book_master.html" %}
+{% block body %}
+<h2>Add Book</h2>
+<form method="post">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    <p></p>
+    <input type="submit" value="Add Book" />
+    <p></p>
+    {{message}}
+</form>
+
+
+{% endblock %}
