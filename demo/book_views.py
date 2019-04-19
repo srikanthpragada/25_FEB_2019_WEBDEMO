@@ -23,11 +23,11 @@ def book_edit(request, id):
         except:
             return render(request, 'book_edit.html',
                           {'message': f"Book With ID {id} Not Found!"})
-    else: # Post
+    else:  # Post
         # Update book
         book = Book.objects.get(id=id)
         f = BookForm(request.POST, instance=book)
-        f.save() # Updation
+        f.save()  # Updation
         return redirect("/demo/book/list")
 
 
@@ -57,3 +57,13 @@ def book_list(request):
     books = Book.objects.all()
     return render(request, 'book_list.html',
                   {"books": books})
+
+
+def book_searchform(request):
+    return render(request, 'book_searchform.html')
+
+
+def book_search(request,title):
+    print(title)
+    books = Book.objects.filter(title__contains = title)
+    

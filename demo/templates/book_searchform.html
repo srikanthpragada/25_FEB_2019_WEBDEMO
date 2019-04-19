@@ -1,0 +1,25 @@
+{% extends "book_master.html" %}
+{% block body %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+        function getBooks() {
+           // Make Ajax request
+           $.get("/demo/book/search/" + $("#title").val(),null,showBooks);
+        }
+        function showNow(books) {
+           // Show books in the form of bullets
+        }
+</script>
+
+<h2>Search Books</h2>
+Title <input type="text" id="title"/>
+<button onclick="getBooks()">Search</button>
+
+<p></p>
+<ul id="books">
+
+</ul>
+
+
+{% endblock %}

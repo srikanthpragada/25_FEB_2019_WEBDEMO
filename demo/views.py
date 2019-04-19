@@ -2,7 +2,7 @@ from datetime import datetime
 
 import requests
 from django.shortcuts import render
-
+from django.http import HttpResponse
 from .forms import InterestForm
 
 
@@ -79,3 +79,11 @@ def calculate_interest(request):
                           {'form': f, 'interest': interest})
         else:
             return render(request, "interest.html", {'form': f})
+
+
+def today(request):
+    now = datetime.now()
+    return HttpResponse(now)
+
+def ajax_demo(request):
+    return render(request,'ajax_demo.html')

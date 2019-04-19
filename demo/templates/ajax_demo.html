@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        function getDateTime() {
+           // Make Ajax request
+           $.get("/demo/today/",null,showNow);
+        }
+        function showNow(result) {
+           $("#now").text(result)
+        }
+    </script>
+</head>
+<body>
+
+<h2>Ajax Demo</h2>
+
+<button onclick="getDateTime()">Show Date and Time</button>
+<h1 id="now"></h1>
+
+</body>
+</html>

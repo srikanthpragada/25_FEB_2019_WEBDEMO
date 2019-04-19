@@ -12,6 +12,10 @@ urlpatterns = [
     path('book/summary/', book_views.book_summary),
     path('book/list/', book_views.book_list),
     path('book/add/', book_views.book_add),
+    path('book/searchform/', book_views.book_searchform),
+    path('book/search/<title>', book_views.book_search),
     path('book/delete/<int:id>', book_views.book_delete),
     path('book/edit/<int:id>', book_views.book_edit),
+    path('today/', views.today),
+    path('ajax/', views.ajax_demo),
 ]
