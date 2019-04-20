@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie Demo</title>
+</head>
+<body>
+<h2>Cookie Demo</h2>
+Your city : {{city}}
+
+<form method="post">
+    {% csrf_token %}
+    City : <input type="text" name="city"/>
+    <input type="submit" value="Save"/>
+</form>
+
+</body>
+</html>

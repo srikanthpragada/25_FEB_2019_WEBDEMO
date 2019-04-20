@@ -1,8 +1,9 @@
-from datetime import datetime
+import datetime
 
 import requests
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.http import HttpResponse
+
 from .forms import InterestForm
 
 
@@ -14,7 +15,7 @@ def welcome(request):
 
 
 def shownow(request):
-    now = datetime.now()
+    now = datetime.datetime.now()
     return render(request, 'shownow.html', {"now": now})
 
 
@@ -85,5 +86,37 @@ def today(request):
     now = datetime.now()
     return HttpResponse(now)
 
+
 def ajax_demo(request):
-    return render(request,'ajax_demo.html')
+    return render(request, 'ajax_demo.html')
+
+
+def session_city(request):
+    if request.method == "GET":
+        if 'city' in request.session:
+            city = request.session['city']
+        else:
+            city = 'Unknown'
+    else:
+        city = request.POST['city']
+        request.session['city'] = city
+
+    return render(request, 'session_city.html', {'city': city})
+
+
+def cookie_city(request):
+    if request.method == "GET":
+        if 'city' in request.COOKIES:
+            city = request.COOKIES['city']
+        else:
+            city = 'Unknown'
+
+        return render(request, 'cookie_city.html', {'city': city})
+    else:
+        city = request.POST['city']
+        resp = HttpResponseRedirect("/demo/cookies")
+        resp.set_cookie("city", city,
+                        expires=datetime.datetime.now()
+                                + datetime.timedelta(days=10))
+
+        return resp

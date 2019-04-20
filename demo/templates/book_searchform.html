@@ -7,8 +7,17 @@
            // Make Ajax request
            $.get("/demo/book/search/" + $("#title").val(),null,showBooks);
         }
-        function showNow(books) {
+        function showBooks(books) {
            // Show books in the form of bullets
+
+           titles = "";
+           for(i = 0; i < books.length; i ++)
+           {
+               titles = titles + "<li>" + books[i].title + " - " +
+                    books[i].price + "</li>";
+           }
+           $("#books").html(titles);
+
         }
 </script>
 

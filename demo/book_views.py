@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-
+from django.http import JsonResponse
 from .forms import BookForm
 from .models import Book
+
 
 
 def book_delete(request, id):
@@ -64,6 +65,8 @@ def book_searchform(request):
 
 
 def book_search(request,title):
-    print(title)
-    books = Book.objects.filter(title__contains = title)
-    
+    books = Book.objects.filter(title__contains=title).values()
+    books = list(books)
+    return JsonResponse(books, safe=False)
+
+

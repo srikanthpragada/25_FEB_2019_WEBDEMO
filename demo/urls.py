@@ -18,4 +18,6 @@ urlpatterns = [
     path('book/edit/<int:id>', book_views.book_edit),
     path('today/', views.today),
     path('ajax/', views.ajax_demo),
+    path('cookies/', views.cookie_city),
+    path('sessions/', views.session_city),
 ]
