@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from . import views, book_views
+from . import views, book_views, rest_views
 
 urlpatterns = [
     path('welcome/', views.welcome ),
@@ -20,4 +20,8 @@ urlpatterns = [
     path('ajax/', views.ajax_demo),
     path('cookies/', views.cookie_city),
     path('sessions/', views.session_city),
+    # Rest API urls
+    path('api/books/', rest_views.get_post_books),
+    path('api/books/<int:id>', rest_views.get_delete_one_book),
+    path('api/client', rest_views.rest_client),
 ]

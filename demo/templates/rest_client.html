@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rest Client</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        URL = "/demo/api/books/"
+        function addBook()
+        {
+          $("#addMessage").text("");
+          $.ajax(
+             { "url": URL,
+               "data": {
+                       "title" : $("#title").val(),
+                       "author" : $("#author").val(),
+                       "price" : $("#price").val()
+                     },
+               "type" : "post",
+               "success" : add_success,
+               "error" : add_error
+             }
+         ); // ajax()
+
+        }
+
+        function add_success()
+        {
+            $("#addMessage").text("Book has been added successfully!");
+        }
+
+        function add_error()
+        {
+            $("#addMessage").text("Book could not be added due to some error!");
+        }
+
+        function getBooks()
+        {
+           $.getJSON(URL,{},showBooks);
+        }
+
+        function showBooks(books) {
+          list = ""
+          $("#books").html("")
+
+          for(i = 0; i < books.length ; i ++)
+               list += "<li>" + books[i].id + "," + books[i].title + "</li>";
+
+          $("#books").html(list);
+        }
+
+        function deleteBook()
+        {
+          $.ajax(
+             { "url": URL +  $("#bookid").val(),
+               "type" : "delete",  // Http Method
+               "success" :
+                  function() {
+                     alert("Book has been deleted successfully");
+                  },
+               "error" :
+                   function() {
+                     alert("Book was not deleted due to some error!");
+                   },
+             }
+           ); // ajax()
+        }
+    </script>
+</head>
+<body>
+<h2>Add Book</h2>
+Title : <input type="text" id="title"/>
+Author : <input type="text" id="author"/>
+Price : <input type="number" id="price"/>
+<p/>
+<button onclick="addBook()">Add Book</button>
+<P></P>
+<div id="addMessage"></div>
+<hr/>
+<p></p>
+<ul id="books">
+
+</ul>
+<p></p>
+<button onclick="getBooks()">Get Books</button>
+<hr/>
+<p></p>
+
+Book id : <input type="number" id="bookid"/>
+<button onclick="deleteBook()">Delete Book</button>
+
+</body>
+</html>
